@@ -26,7 +26,7 @@ function Logo() {
         </div>
         <div className="flex gap-1 text-[19px]">
           <span className={`font-bold text-green-1`}>Clip</span>
-          <span className="text-slate-600">Code</span>
+          <span className="text-slate-300">Code</span>
         </div>
       </div>
     </>
@@ -40,7 +40,7 @@ function Buttons() {
         <Button className="bg-green-1 px-8 p-[20px] hover:bg-green-1 max-sm:w-full">
           Sign In
         </Button>
-        <Button className="bg-white border border-green-1 text-green-1 px-8 p-[19px] max-sm:w-full hover:text-white hover:border-black">
+        <Button className="bg-gray-700 border border-gray-500 text-white px-8 p-[19px] max-sm:w-full hover:text-white hover:border-gray-400">
           Sign Up
         </Button>
       </div>
