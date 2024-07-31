@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div className="poppins">Utsav Patel</div>;
+  return <div className="poppins bg-white text-black">Utsav Patel</div>;
 }
