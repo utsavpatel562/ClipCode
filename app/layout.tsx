@@ -28,7 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        scrollbarWidth: "thin",
+        scrollbarColor: "#888 #000",
+      }}
+    >
       <ClerkProvider>
         <body
           className={poppins.className}

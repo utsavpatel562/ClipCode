@@ -6,6 +6,7 @@ import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import { WobbleCardDemo } from "./components/WobbleCard";
 import FooterPage from "./components/Footer";
+import { StickyScrollRevealDemo } from "./components/HowItWorks";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <div>
         <CTASession />
         <MyFeatures />
+        <StickyScrollRevealDemo />
       </div>
       <footer>
         <FooterSection />
@@ -91,7 +93,7 @@ function MyFeatures() {
   return (
     <>
       <div className="flex flex-col items-center my-20">
-        <h2 className="font-extrabold text-gray-400 text-[34px] text-center">
+        <h2 className="font-extrabold text-gray-400 text-[36px]">
           Top Features
         </h2>
         <WobbleCardDemo />
@@ -99,6 +101,7 @@ function MyFeatures() {
     </>
   );
 }
+
 function FooterSection() {
   return (
     <>
