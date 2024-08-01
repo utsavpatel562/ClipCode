@@ -5,6 +5,7 @@ import { TypewriterEffectSmoothDemo } from "./components/TypewriterEffect";
 import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import { WobbleCardDemo } from "./components/WobbleCard";
+import FooterPage from "./components/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
         <CTASession />
         <MyFeatures />
       </div>
+      <footer>
+        <FooterSection />
+      </footer>
     </>
   );
 }
@@ -92,6 +96,13 @@ function MyFeatures() {
         </h2>
         <WobbleCardDemo />
       </div>
+    </>
+  );
+}
+function FooterSection() {
+  return (
+    <>
+      <FooterPage />
     </>
   );
 }
