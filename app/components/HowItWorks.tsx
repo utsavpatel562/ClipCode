@@ -71,8 +71,13 @@ const content = [
 ];
 export function StickyScrollRevealDemo() {
   return (
-    <div className="bg-gradient-to-r from-slate-900 to-slate-700">
-      <StickyScroll content={content} />
-    </div>
+    <>
+      <h2 className="text-center mb-6 font-extrabold text-gray-400 text-[36px]">
+        How ClipCode Works
+      </h2>
+      <div className="bg-gradient-to-r from-gray-950 to-gray-800">
+        <StickyScroll content={content} />
+      </div>
+    </>
   );
 }
