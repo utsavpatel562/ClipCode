@@ -63,7 +63,7 @@ function Buttons() {
             <Button className="bg-green-1 px-8 py-[20px] hover:bg-green-1 max-sm:w-full">
               <Link href="/sign-in">Sign In</Link>
             </Button>
-            <Button className="bg-gray-700 border border-gray-500 text-white px-8 py-[19px] max-sm:w-full hover:text-white hover:border-gray-400">
+            <Button className="bg-gray-800 border border-gray-600 text-white px-8 py-[19px] max-sm:w-full hover:text-white hover:border-gray-400">
               <Link href="/sign-up">Sign Up</Link>
             </Button>
           </div>

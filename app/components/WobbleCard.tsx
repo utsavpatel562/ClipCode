@@ -1,7 +1,10 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import { WobbleCard } from "../../components/ui/wobble-card";
+import Terminal from "@mui/icons-material/Terminal";
+import ViewQuilt from "@mui/icons-material/ViewQuilt";
+import AllInclusive from "@mui/icons-material/AllInclusive";
+import FilterDrama from "@mui/icons-material/FilterDrama";
 
 export function WobbleCardDemo() {
   return (
@@ -10,7 +13,8 @@ export function WobbleCardDemo() {
         containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px]"
         className=""
       >
-        <div className="max-w-xs">
+        <div className="max-w-lg">
+          <Terminal className="mb-2 w-[35px] h-[35px] text-neutral-200" />
           <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
             Syntax Highlighting
           </h2>
@@ -19,25 +23,31 @@ export function WobbleCardDemo() {
             your preferred coding style.
           </p>
         </div>
-        <Image
-          src="/linear.webp"
-          width={500}
-          height={500}
-          alt="linear demo image"
-          className="absolute -right-4 lg:-right-[40%] grayscale filter -bottom-10 object-contain rounded-2xl"
-        />
       </WobbleCard>
       <WobbleCard containerClassName="col-span-1 min-h-[300px]">
+        <ViewQuilt className="mb-2 w-[35px] h-[35px] text-neutral-200" />
         <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
           Intuitive UI:
         </h2>
         <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
           Clean and modern design with Tailwind CSS for a smooth user
-          experience. Responsive design for seamless use on any device.
+          experience.
         </p>
       </WobbleCard>
-      <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
+
+      <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-green-700">
+        <FilterDrama className="mb-2 w-[35px] h-[35px] text-neutral-200" />
+        <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+          Cloud Sync
+        </h2>
+        <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
+          Access your snippets from any device, anytime. Automatic backups to
+          ensure your code is always safe.
+        </p>
+      </WobbleCard>
+      <WobbleCard containerClassName="col-span-1 lg:col-span-2 bg-purple-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
         <div className="max-w-sm">
+          <AllInclusive className="mb-2 w-[35px] h-[35px] text-neutral-200" />
           <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
             Seamless Organization
           </h2>
@@ -46,13 +56,6 @@ export function WobbleCardDemo() {
             functionality for effortless reorganization.
           </p>
         </div>
-        <Image
-          src="/linear.webp"
-          width={500}
-          height={500}
-          alt="linear demo image"
-          className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10 object-contain rounded-2xl"
-        />
       </WobbleCard>
     </div>
   );
