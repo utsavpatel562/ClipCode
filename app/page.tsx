@@ -1,6 +1,9 @@
+"use client";
 import CodeIcon from "@mui/icons-material/Code";
 import { Button } from "@/components/ui/button";
 import { TypewriterEffectSmoothDemo } from "./components/TypewriterEffect";
+import { useAuth } from "@clerk/nextjs";
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -40,15 +43,26 @@ function Logo() {
 }
 
 function Buttons() {
+  const { userId } = useAuth();
   return (
     <>
-      <div className="flex gap-2 max-sm:flex-col max-sm:w-[60%] max-sm:mt-8">
-        <Button className="bg-green-1 px-8 p-[20px] hover:bg-green-1 max-sm:w-full">
-          Sign In
-        </Button>
-        <Button className="bg-gray-700 border border-gray-500 text-white px-8 p-[19px] max-sm:w-full hover:text-white hover:border-gray-400">
-          Sign Up
-        </Button>
+      <div className="max-sm:w-full">
+        {userId ? (
+          <Link href="/my-notes">
+            <Button className="bg-green-1 px-8 p-[20px] hover:bg-green-1 max-sm:w-full">
+              Access To The App
+            </Button>
+          </Link>
+        ) : (
+          <div className="flex gap-2 max-sm:flex-col max-sm:w-[60%] max-sm:mt-8">
+            <Button className="bg-green-1 px-8 p-[20px] hover:bg-green-1 max-sm:w-full">
+              <Link href="/sign-in">Sign In</Link>
+            </Button>
+            <Button className="bg-gray-700 border border-gray-500 text-white px-8 p-[19px] max-sm:w-full hover:text-white hover:border-gray-400">
+              <Link href="/sign-up">Sign Up</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </>
   );
