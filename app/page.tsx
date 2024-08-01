@@ -1,10 +1,16 @@
 import CodeIcon from "@mui/icons-material/Code";
 import { Button } from "@/components/ui/button";
+import { TypewriterEffectSmoothDemo } from "./components/TypewriterEffect";
 export default function Home() {
   return (
-    <div className="poppins">
-      <Navbar />
-    </div>
+    <>
+      <div className="poppins">
+        <Navbar />
+      </div>
+      <div>
+        <CTASession />
+      </div>
+    </>
   );
 }
 function Navbar() {
@@ -20,7 +26,7 @@ function Navbar() {
 function Logo() {
   return (
     <>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center cursor-pointer">
         <div className={`bg-green-1 p-[6px] rounded-md`}>
           <CodeIcon sx={{ fontSize: 27, color: "white" }} />
         </div>
@@ -43,6 +49,15 @@ function Buttons() {
         <Button className="bg-gray-700 border border-gray-500 text-white px-8 p-[19px] max-sm:w-full hover:text-white hover:border-gray-400">
           Sign Up
         </Button>
+      </div>
+    </>
+  );
+}
+function CTASession() {
+  return (
+    <>
+      <div className="flex flex-col mx-16 items-center mt-[120px] gap-6">
+        <TypewriterEffectSmoothDemo />
       </div>
     </>
   );
