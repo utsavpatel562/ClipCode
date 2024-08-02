@@ -21,9 +21,11 @@
     "cobe": "^0.6.3",
     "framer-motion": "^11.3.19",
     "lucide-react": "^0.418.0",
+    "mongoose": "^8.5.2",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "svix": "^1.28.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
