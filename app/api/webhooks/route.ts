@@ -1,6 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import { WebhookEvent } from '@clerk/nextjs/server'
+import { EmailAddress, WebhookEvent } from '@clerk/nextjs/server'
 import User from '@/app/models/UserSchema'
 import connect from '@/app/lib/connect'
 
