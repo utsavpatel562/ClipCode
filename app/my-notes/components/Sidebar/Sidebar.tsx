@@ -7,7 +7,6 @@ import {
   IconSettings,
   IconTrash,
 } from "@tabler/icons-react";
-import { UserButton } from "@clerk/nextjs";
 
 const Sidebar = () => {
   return (
@@ -15,6 +14,7 @@ const Sidebar = () => {
       <div className="w-[20%] p-5 flex flex-col gap-2 h-screen pt-7 border-r">
         <Logo />
         <QuickLinks />
+        <Languages />
       </div>
     </>
   );
@@ -77,5 +77,13 @@ function QuickLinks() {
     </>
   );
 }
-
+function Languages() {
+  return (
+    <>
+      <div className="mt-10 text-base">
+        <div className="font-bold text-slate-400">Languages</div>
+      </div>
+    </>
+  );
+}
 export default Sidebar;
