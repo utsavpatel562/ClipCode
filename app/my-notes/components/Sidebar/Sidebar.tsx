@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Code from "@mui/icons-material/Code";
+import { useGlobalContext } from "../../../../ContextApi";
 import {
   IconBorderAll,
   IconBrandJavascript,
@@ -37,6 +40,10 @@ function Logo() {
   );
 }
 function QuickLinks() {
+  const {
+    sideBarMenuObject: { sideBarMenu },
+  } = useGlobalContext();
+  console.log(sideBarMenu);
   return (
     <>
       <div className="mt-10 text-base">
