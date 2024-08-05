@@ -3,6 +3,7 @@
 import {
   IconBorderAll,
   IconHeart,
+  IconLogout,
   icons,
   IconSettings,
   IconTrash,
@@ -56,6 +57,12 @@ export default function GlobalContextProvider({
       name: "Settings",
       isSelected: false,
       icons: <IconSettings style={{ fontSize: 18 }} />,
+    },
+    {
+      id: 5,
+      name: "Logout",
+      isSelected: false,
+      icons: <IconLogout style={{ fontSize: 18 }} />,
     },
   ]);
   return (

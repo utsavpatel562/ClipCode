@@ -16,7 +16,7 @@ import {
 const Sidebar = () => {
   return (
     <>
-      <div className="w-[20%] p-5 flex flex-col gap-2 h-screen pt-7 border-r">
+      <div className="w-[20%] p-5 flex flex-col gap-2 h-screen pt-7 border-r bg-white">
         <Logo />
         <QuickLinks />
         <Languages />
