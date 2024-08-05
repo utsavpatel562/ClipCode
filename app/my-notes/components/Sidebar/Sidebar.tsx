@@ -69,7 +69,7 @@ function QuickLinks() {
               }}
               className={`flex cursor-pointer select-none gap-1 items-center ${
                 menu.isSelected
-                  ? "bg-green-600 text-white w-[60%] px-2 p-[7px] rounded-md"
+                  ? "bg-green-600 text-white w-[100%] px-2 p-[7px] rounded-md"
                   : "text-slate-500 p-[7px] px-2 rounded-md"
               }`}
             >
