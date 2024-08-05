@@ -8,6 +8,7 @@ function ContentArea() {
   );
 }
 export default ContentArea;
+
 function TopBar() {
   return (
     <div className="rounded-lg flex justify-between items-center bg-white p-3">

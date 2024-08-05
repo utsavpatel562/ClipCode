@@ -4,8 +4,12 @@ import ContentArea from "./components/ContentArea/ContentArea";
 export default function page() {
   return (
     <>
-      <Sidebar />
-      <ContentArea />
+      <div>
+        <div className="flex">
+          <Sidebar />
+          <ContentArea />
+        </div>
+      </div>
     </>
   );
 }
