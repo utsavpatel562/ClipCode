@@ -41,46 +41,42 @@ function Logo() {
 }
 function QuickLinks() {
   const {
-    sideBarMenuObject: { sideBarMenu },
+    sideBarMenuObject: { sideBarMenu, setSideBarMenu },
   } = useGlobalContext();
   console.log(sideBarMenu);
+
+  function clickedMenu(index: number) {
+    const updatedSideBarMenu = sideBarMenu.map((menu, i) => {
+      if (i === index) {
+        return { ...menu, isSelected: true };
+      } else {
+        return { ...menu, isSelected: false };
+      }
+    });
+    setSideBarMenu(updatedSideBarMenu);
+  }
   return (
     <>
       <div className="mt-10 text-base">
         <div className="font-bold text-slate-400">Quick Links</div>
         <ul className="text-slate-400 mt-4 flex flex-col gap-2">
-          <li className="flex gap-1 items-center bg-green-600 text-white p-[7px] px-2 rounded-md w-[60%] cursor-pointer">
-            <IconBorderAll
+          {sideBarMenu.map((menu, index) => (
+            <li
+              key={index}
+              onClick={() => clickedMenu(index)}
               style={{
                 fontSize: 18,
               }}
-            />
-            <span>All Snippets</span>
-          </li>
-          <li className="flex gap-1 items-center p-[7px] px-2 rounded-md w-[60%] hover:bg-green-600 hover:text-white cursor-pointer">
-            <IconHeart
-              style={{
-                fontSize: 18,
-              }}
-            />
-            <span>Favorites</span>
-          </li>
-          <li className="flex gap-1 items-center p-[7px] px-2 rounded-md w-[60%] hover:bg-green-600 hover:text-white cursor-pointer">
-            <IconTrash
-              style={{
-                fontSize: 18,
-              }}
-            />
-            <span>Tarsh</span>
-          </li>
-          <li className="flex gap-1 items-center p-[7px] px-2 rounded-md w-[60%] hover:bg-green-600 hover:text-white cursor-pointer">
-            <IconSettings
-              style={{
-                fontSize: 18,
-              }}
-            />
-            <span>Settings</span>
-          </li>
+              className={`flex cursor-pointer select-none gap-1 items-center ${
+                menu.isSelected
+                  ? "bg-green-600 text-white w-[60%] px-2 p-[7px] rounded-md"
+                  : "text-slate-500 p-[7px] px-2 rounded-md"
+              }`}
+            >
+              {menu.icons}
+              <span>{menu.name}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </>

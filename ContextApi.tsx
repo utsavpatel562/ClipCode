@@ -33,24 +33,29 @@ export default function GlobalContextProvider({
   children: React.ReactNode;
 }) {
   const [sideBarMenu, setSideBarMenu] = useState<SideBarMenu[]>([
-    { id: 1, name: "All Snippets", isSelected: true, icons: <IconBorderAll /> },
+    {
+      id: 1,
+      name: "All Snippets",
+      isSelected: true,
+      icons: <IconBorderAll style={{ fontSize: 18 }} />,
+    },
     {
       id: 2,
       name: "Favorites",
       isSelected: false,
-      icons: <IconHeart />,
+      icons: <IconHeart style={{ fontSize: 18 }} />,
     },
     {
       id: 3,
       name: "Trash",
       isSelected: false,
-      icons: <IconTrash />,
+      icons: <IconTrash style={{ fontSize: 18 }} />,
     },
     {
       id: 4,
       name: "Settings",
       isSelected: false,
-      icons: <IconSettings />,
+      icons: <IconSettings style={{ fontSize: 18 }} />,
     },
   ]);
   return (
