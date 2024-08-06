@@ -23,7 +23,7 @@ function ProfileUser() {
         )}
         <div className="flex flex-col text-sm">
           <span className="font-semibold">
-            {user?.lastName} {user?.lastName}
+            {user?.firstName} {user?.lastName}
           </span>
           <span className="text-slate-500 text-[11px]">
             {user?.emailAddresses[0].emailAddress}

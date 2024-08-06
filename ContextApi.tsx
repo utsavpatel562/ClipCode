@@ -3,29 +3,45 @@
 import {
   IconBorderAll,
   IconHeart,
+  IconLighter,
   IconLogout,
   icons,
   IconSettings,
   IconTrash,
 } from "@tabler/icons-react";
-import { createContext, useContext, useState } from "react";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import React, { createContext, useContext, useState } from "react";
+import StarHalf from "@mui/icons-material/StarHalf";
 
-interface GlobalContextType {
-  sideBarMenuObject: {
-    sideBarMenu: SideBarMenu[];
-    setSideBarMenu: React.Dispatch<React.SetStateAction<SideBarMenu[]>>;
-  };
-}
 interface SideBarMenu {
   id: number;
   name: string;
   isSelected: boolean;
   icons: React.ReactNode;
 }
+interface DarkModeType {
+  id: number;
+  icon: React.ReactNode;
+  isSelected: boolean;
+}
+interface GlobalContextType {
+  sideBarMenuObject: {
+    sideBarMenu: SideBarMenu[];
+    setSideBarMenu: React.Dispatch<React.SetStateAction<SideBarMenu[]>>;
+  };
+  darkModeObject: {
+    darkMode: DarkModeType[];
+    setDarkMode: React.Dispatch<React.SetStateAction<DarkModeType[]>>;
+  };
+}
 const ContextProvider = createContext<GlobalContextType>({
   sideBarMenuObject: {
     sideBarMenu: [],
     setSideBarMenu: () => {},
+  },
+  darkModeObject: {
+    darkMode: [],
+    setDarkMode: () => {},
   },
 });
 export default function GlobalContextProvider({
@@ -65,9 +81,24 @@ export default function GlobalContextProvider({
       icons: <IconLogout style={{ fontSize: 18 }} />,
     },
   ]);
+  const [darkMode, setDarkMode] = useState<DarkModeType[]>([
+    {
+      id: 1,
+      icon: <WbSunnyIcon sx={{ fontSize: 18 }} />,
+      isSelected: true,
+    },
+    {
+      id: 2,
+      icon: <StarHalf sx={{ fontSize: 18 }} />,
+      isSelected: false,
+    },
+  ]);
   return (
     <ContextProvider.Provider
-      value={{ sideBarMenuObject: { sideBarMenu, setSideBarMenu } }}
+      value={{
+        sideBarMenuObject: { sideBarMenu, setSideBarMenu },
+        darkModeObject: { darkMode, setDarkMode },
+      }}
     >
       {children}
     </ContextProvider.Provider>
