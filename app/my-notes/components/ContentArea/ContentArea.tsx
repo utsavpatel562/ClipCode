@@ -26,9 +26,9 @@ function TopBar() {
   } = useGlobalContext();
   return (
     <div
-      className={`p-3 ${
+      className={`p-3 w-full ${
         darkMode[1].isSelected ? "bg-slate-900 text-whit" : "bg-white"
-      } rounded-lg flex justify-between items-center bg-white"`}
+      } rounded-lg flex justify-between items-center`}
     >
       <ProfileUser />
       <SearchBar />

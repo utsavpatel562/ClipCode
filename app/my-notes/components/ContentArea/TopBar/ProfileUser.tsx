@@ -1,5 +1,6 @@
 "use client";
 
+import { useGlobalContext } from "@/ContextApi";
 import { useUser } from "@clerk/nextjs";
 
 function ProfileUser() {
@@ -16,6 +17,9 @@ function ProfileUser() {
   const loadingUserEmail = (
     <span className="text-slate-500 text-[11px] bg-slate-100 h-2 w-[130px]"></span>
   );
+  const {
+    darkModeObject: { darkMode },
+  } = useGlobalContext();
 
   return (
     <>
@@ -33,14 +37,22 @@ function ProfileUser() {
           {!user ? (
             loadingUserName
           ) : (
-            <span className="font-semibold">
+            <span
+              className={`font-semibold ${
+                darkMode[1].isSelected ? "text-slate-300" : "text-slate-800"
+              }`}
+            >
               {user?.firstName} {user?.lastName}
             </span>
           )}
           {!user ? (
             loadingUserEmail
           ) : (
-            <span className="text-slate-500 text-[11px]">
+            <span
+              className={`text-[11px] ${
+                darkMode[1].isSelected ? "text-slate-300" : "text-slate-500"
+              }`}
+            >
               {user?.emailAddresses[0].emailAddress}
             </span>
           )}

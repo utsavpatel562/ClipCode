@@ -20,9 +20,9 @@ export default function Sidebar() {
   return (
     <>
       <div
-        className={`w-[20%] p-5 flex flex-col gap-2 h-screen pt-7 ${
+        className={`max-md:hidden w-[20%] pr-10 p-6 flex flex-col gap-2 h-screen pt-7 ${
           darkMode[1].isSelected
-            ? "bg-black border-r border-gray-600"
+            ? "bg-black border-r border-gray-800"
             : "bg-white border-r"
         } `}
       >
