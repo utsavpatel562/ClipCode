@@ -38,7 +38,7 @@ function ProfileUser() {
             loadingUserName
           ) : (
             <span
-              className={`font-semibold ${
+              className={`font-semibold max-md:hidden ${
                 darkMode[1].isSelected ? "text-slate-300" : "text-slate-800"
               }`}
             >
@@ -49,7 +49,7 @@ function ProfileUser() {
             loadingUserEmail
           ) : (
             <span
-              className={`text-[11px] ${
+              className={`text-[11px] max-md:hidden ${
                 darkMode[1].isSelected ? "text-slate-300" : "text-slate-500"
               }`}
             >

@@ -1,5 +1,5 @@
 import { useGlobalContext } from "@/ContextApi";
-import { IconSearch } from "@tabler/icons-react";
+import { IconPlus, IconSearch } from "@tabler/icons-react";
 import React from "react";
 
 const SearchBar = () => {
@@ -29,8 +29,8 @@ function AddSnippetButton() {
   return (
     <>
       <div className="absoulte flex gap-2 px-3 rounded-3xl bg-green-600 p-1 text-[13px] text-white top-[5px] right-[2px] items-center cursor-pointer select-none">
-        <div className="font-bold">+</div>
-        <div>Snippet</div>
+        <IconPlus style={{ width: 18 }} />
+        <div className="max-md:hidden">Snippet</div>
       </div>
     </>
   );

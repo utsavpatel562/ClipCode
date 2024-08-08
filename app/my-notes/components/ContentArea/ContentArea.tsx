@@ -3,6 +3,7 @@ import React from "react";
 import ProfileUser from "./TopBar/ProfileUser";
 import SearchBar from "./TopBar/SearchBar";
 import DarkMode from "./TopBar/DarkMode";
+import SideBarMenuIcon from "./TopBar/SideBarMenuIcon";
 import { useGlobalContext } from "@/ContextApi";
 function ContentArea() {
   const {
@@ -10,7 +11,7 @@ function ContentArea() {
   } = useGlobalContext();
   return (
     <div
-      className={`w-[80%] ${
+      className={`w-full ${
         darkMode[1].isSelected ? "bg-slate-950" : "bg-slate-100"
       } p-5`}
     >
@@ -26,13 +27,16 @@ function TopBar() {
   } = useGlobalContext();
   return (
     <div
-      className={`p-3 w-full ${
+      className={`${
         darkMode[1].isSelected ? "bg-slate-900 text-whit" : "bg-white"
-      } rounded-lg flex justify-between items-center`}
+      } rounded-lg flex justify-between items-center p-3`}
     >
       <ProfileUser />
       <SearchBar />
-      <DarkMode />
+      <div className="flex gap-4 items-center">
+        <DarkMode />
+        <SideBarMenuIcon />
+      </div>
     </div>
   );
 }
