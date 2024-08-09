@@ -37,6 +37,10 @@ interface GlobalContextType {
     openSideBar: boolean;
     setOpenSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   };
+  openContentNoteObject: {
+    openContentNote: boolean;
+    setOpenContentNote: React.Dispatch<React.SetStateAction<boolean>>;
+  };
 }
 const ContextProvider = createContext<GlobalContextType>({
   sideBarMenuObject: {
@@ -50,6 +54,10 @@ const ContextProvider = createContext<GlobalContextType>({
   openSideBarObject: {
     openSideBar: false,
     setOpenSideBar: () => {},
+  },
+  openContentNoteObject: {
+    openContentNote: false,
+    setOpenContentNote: () => {},
   },
 });
 export default function GlobalContextProvider({
@@ -102,12 +110,14 @@ export default function GlobalContextProvider({
     },
   ]);
   const [openSideBar, setOpenSideBar] = useState(false);
+  const [openContentNote, setOpenContentNote] = useState(false);
   return (
     <ContextProvider.Provider
       value={{
         sideBarMenuObject: { sideBarMenu, setSideBarMenu },
         darkModeObject: { darkMode, setDarkMode },
         openSideBarObject: { openSideBar, setOpenSideBar },
+        openContentNoteObject: { openContentNote, setOpenContentNote },
       }}
     >
       {children}

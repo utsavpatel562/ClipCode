@@ -7,6 +7,7 @@ import SideBarMenuIcon from "./TopBar/SideBarMenuIcon";
 import { useGlobalContext } from "@/ContextApi";
 import SwiperSelection from "./NotesArea/SwiperSelection";
 import AllNotesSection from "./NotesArea/AllNotesSection";
+import ContentNote from "../ContentNote/ContentNote";
 function ContentArea() {
   const {
     darkModeObject: { darkMode },
@@ -46,10 +47,16 @@ function TopBar() {
   );
 }
 function NotesArea() {
+  const {
+    openContentNoteObject: { openContentNote },
+  } = useGlobalContext();
   return (
-    <div className="mt-5">
-      <SwiperSelection />
-      <AllNotesSection />
+    <div className="flex gap-2 mt-5 border">
+      <div className={`${openContentNote ? "w-[50%]" : "w-full"}`}>
+        <SwiperSelection />
+        <AllNotesSection />
+      </div>
+      <ContentNote />
     </div>
   );
 }
