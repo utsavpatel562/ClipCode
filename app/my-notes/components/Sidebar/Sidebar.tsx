@@ -24,7 +24,7 @@ export default function Sidebar() {
       <div
         className={`${
           openSideBar ? "fixed w-[90%] shadow-lg" : "max-md:hidden"
-        } w-[25%] pr-10 p-6 flex flex-col gap-2 h-screen pt-7 ${
+        } w-full pr-10 p-6 flex flex-col gap-2 h-screen pt-7 ${
           darkMode[1].isSelected
             ? "bg-black border-r border-gray-800"
             : "bg-white border-r"

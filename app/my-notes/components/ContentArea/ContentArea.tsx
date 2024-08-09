@@ -6,6 +6,7 @@ import DarkMode from "./TopBar/DarkMode";
 import SideBarMenuIcon from "./TopBar/SideBarMenuIcon";
 import { useGlobalContext } from "@/ContextApi";
 import SwiperSelection from "./NotesArea/SwiperSelection";
+import AllNotesSection from "./NotesArea/AllNotesSection";
 function ContentArea() {
   const {
     darkModeObject: { darkMode },
@@ -40,7 +41,15 @@ function TopBar() {
           <SideBarMenuIcon />
         </div>
       </div>
-      <SwiperSelection />
+      <NotesArea />
     </>
+  );
+}
+function NotesArea() {
+  return (
+    <div className="mt-5">
+      <SwiperSelection />
+      <AllNotesSection />
+    </div>
   );
 }
