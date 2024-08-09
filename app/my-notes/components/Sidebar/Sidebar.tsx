@@ -16,11 +16,15 @@ import {
 export default function Sidebar() {
   const {
     darkModeObject: { darkMode },
+    openSideBarObject: { openSideBar, setOpenSideBar },
   } = useGlobalContext();
+  console.log(openSideBar);
   return (
     <>
       <div
-        className={`max-md:hidden w-[20%] pr-10 p-6 flex flex-col gap-2 h-screen pt-7 ${
+        className={`${
+          openSideBar ? "fixed w-[90%] shadow-lg" : "max-md:hidden"
+        } w-[25%] pr-10 p-6 flex flex-col gap-2 h-screen pt-7 ${
           darkMode[1].isSelected
             ? "bg-black border-r border-gray-800"
             : "bg-white border-r"

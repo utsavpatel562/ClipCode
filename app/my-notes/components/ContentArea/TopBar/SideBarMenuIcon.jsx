@@ -1,17 +1,22 @@
 "use client";
 import { useGlobalContext } from "@/ContextApi";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconCross } from "@tabler/icons-react";
+import CancelIcon from "@mui/icons-material/Cancel";
+
 function SideBarMenuIcon() {
   const {
     openSideBarObject: { openSideBar, setOpenSideBar },
   } = useGlobalContext();
+
   return (
     <>
       {!openSideBar ? (
-        <MenuIcon className="text-slate-500 cursor-pointer hidden max-md:block" />
+        <MenuIcon
+          onClick={() => setOpenSideBar(!openSideBar)}
+          className="text-slate-500 cursor-pointer hidden max-md:block"
+        />
       ) : (
-        <IconCross
+        <CancelIcon
           onClick={() => setOpenSideBar(!openSideBar)}
           className="text-slate-500 cursor-pointer hidden max-md:block"
         />
@@ -19,4 +24,5 @@ function SideBarMenuIcon() {
     </>
   );
 }
+
 export default SideBarMenuIcon;
