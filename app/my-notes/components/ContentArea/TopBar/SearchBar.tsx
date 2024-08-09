@@ -28,7 +28,7 @@ const SearchBar = () => {
 function AddSnippetButton() {
   return (
     <>
-      <div className="absoulte flex gap-2 px-3 rounded-3xl bg-green-600 p-1 text-[13px] text-white top-[5px] right-[2px] items-center cursor-pointer select-none">
+      <div className="absoulte flex gap-2 px-3 rounded-3xl bg-green-600 p-1 text-[13px] text-white top-[5px] right-[2px] items-center cursor-pointer select-none max-md:px-2">
         <IconPlus style={{ width: 18 }} />
         <div className="max-md:hidden">Snippet</div>
       </div>

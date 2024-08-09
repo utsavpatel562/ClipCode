@@ -33,12 +33,16 @@ function ProfileUser() {
             className="w-9 h-9 rounded-full mb-[5px]"
           />
         )}
-        <div className={`flex flex-col text-sm ${!user ? "gap-1" : ""}`}>
+        <div
+          className={`max-md:hidden flex flex-col text-sm ${
+            !user ? "gap-1" : ""
+          }`}
+        >
           {!user ? (
             loadingUserName
           ) : (
             <span
-              className={`font-semibold max-md:hidden ${
+              className={`font-semibold ${
                 darkMode[1].isSelected ? "text-slate-300" : "text-slate-800"
               }`}
             >
