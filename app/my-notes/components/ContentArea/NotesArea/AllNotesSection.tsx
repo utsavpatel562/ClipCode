@@ -139,7 +139,7 @@ export default HelloWorld;
 `;
   return (
     <>
-      <div className="rounded-md overflow-hidden text-sm">
+      <div className="overflow-hidden text-sm">
         <SyntaxHighlighter
           language={language}
           style={darkMode[1].isSelected ? oneDark : materialLight}

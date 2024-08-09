@@ -60,7 +60,7 @@ export default function GlobalContextProvider({
   const [sideBarMenu, setSideBarMenu] = useState<SideBarMenu[]>([
     {
       id: 1,
-      name: "All Snippets",
+      name: "Snippets",
       isSelected: true,
       icons: <IconBorderAll style={{ fontSize: 18 }} />,
     },

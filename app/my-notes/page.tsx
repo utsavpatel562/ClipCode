@@ -11,9 +11,19 @@ export default function page() {
     <>
       <div>
         <div
-          className={`flex ${darkMode[1].isSelected ? "bg-black" : "bg-white"}`}
+          className={`flex ${
+            darkMode[1].isSelected ? "bg-slate-950" : "bg-white"
+          }`}
         >
-          <Sidebar />
+          <div
+            className={`w-[30%] ${
+              darkMode[1].isSelected
+                ? "border-r border-gray-900"
+                : "border-r border-gray-200"
+            }`}
+          >
+            <Sidebar />
+          </div>
           <ContentArea />
         </div>
       </div>
