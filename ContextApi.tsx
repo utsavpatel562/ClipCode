@@ -12,6 +12,7 @@ import {
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import StarHalf from "@mui/icons-material/StarHalf";
+import { Flamenco } from "next/font/google";
 
 interface SideBarMenu {
   id: number;
@@ -41,6 +42,10 @@ interface GlobalContextType {
     openContentNote: boolean;
     setOpenContentNote: React.Dispatch<React.SetStateAction<boolean>>;
   };
+  isMobileObject: {
+    isMobile: boolean;
+    setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
+  };
 }
 const ContextProvider = createContext<GlobalContextType>({
   sideBarMenuObject: {
@@ -58,6 +63,10 @@ const ContextProvider = createContext<GlobalContextType>({
   openContentNoteObject: {
     openContentNote: false,
     setOpenContentNote: () => {},
+  },
+  isMobileObject: {
+    isMobile: false,
+    setIsMobile: () => {},
   },
 });
 export default function GlobalContextProvider({

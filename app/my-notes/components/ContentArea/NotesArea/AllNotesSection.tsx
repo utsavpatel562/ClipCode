@@ -29,7 +29,7 @@ function SingleNote() {
         className={`${
           darkMode[1].isSelected ? "bg-slate-900 text-white" : "bg-white"
         } ${
-          openContentNote ? "w-full" : "w-[380px]"
+          openContentNote ? "w-full" : "w-[400px]"
         } max-sm:w-full rounded-lg py-4`}
       >
         <NoteHeader />
@@ -43,9 +43,15 @@ function SingleNote() {
   );
 }
 function NoteHeader() {
+  const {
+    openContentNoteObject: { openContentNote, setOpenContentNote },
+  } = useGlobalContext();
   return (
-    <div className="flex justify-between mx-4">
-      <span className="font-bold text-lg w-[87%]">
+    <div
+      className="flex justify-between mx-4"
+      onClick={() => setOpenContentNote(true)}
+    >
+      <span className="font-bold text-lg w-[87%] hover:text-green-600 cursor-pointer">
         Lorem ipsum dolor, sit amet consectetur.
       </span>
       <IconHeart className="text-slate-400 cursor-pointer" />

@@ -20,7 +20,12 @@ function ContentNote() {
         }`}
       >
         ContentNote
-        <div onClick={() => setOpenContentNote(false)}>Close</div>
+        <div
+          onClick={() => setOpenContentNote(false)}
+          className="cursor-pointer"
+        >
+          Close
+        </div>
       </div>
     </>
   );
