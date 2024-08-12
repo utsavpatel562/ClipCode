@@ -21,13 +21,16 @@ export default AllNotesSection;
 function SingleNote() {
   const {
     darkModeObject: { darkMode },
+    openContentNoteObject: { openContentNote },
   } = useGlobalContext();
   return (
     <>
       <div
         className={`${
           darkMode[1].isSelected ? "bg-slate-900 text-white" : "bg-white"
-        } max-sm:w-full w-[400px] rounded-lg p-5 flex-wrap`}
+        } ${
+          openContentNote ? "w-full" : "w-[380px]"
+        } max-sm:w-full rounded-lg py-4`}
       >
         <NoteHeader />
         <NoteDate />

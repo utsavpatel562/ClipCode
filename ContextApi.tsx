@@ -10,7 +10,7 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import StarHalf from "@mui/icons-material/StarHalf";
 
 interface SideBarMenu {
@@ -111,6 +111,17 @@ export default function GlobalContextProvider({
   ]);
   const [openSideBar, setOpenSideBar] = useState(false);
   const [openContentNote, setOpenContentNote] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 600);
+  };
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <ContextProvider.Provider
       value={{
@@ -118,6 +129,7 @@ export default function GlobalContextProvider({
         darkModeObject: { darkMode, setDarkMode },
         openSideBarObject: { openSideBar, setOpenSideBar },
         openContentNoteObject: { openContentNote, setOpenContentNote },
+        isMobileObject: { isMobile, setIsMobile },
       }}
     >
       {children}
