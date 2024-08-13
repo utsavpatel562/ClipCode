@@ -115,6 +115,7 @@ function NoteDate() {
 function NoteDescription() {
   const {
     darkModeObject: { darkMode },
+    openContentNoteObject: { openContentNote, setOpenContentNote },
   } = useGlobalContext();
   return (
     <>
@@ -122,6 +123,7 @@ function NoteDescription() {
         className={`${
           darkMode[1].isSelected ? "text-slate-300" : ""
         } text-slate-600 text-[13px] mt-4 mx-4`}
+        onClick={() => setOpenContentNote(true)}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
         reprehenderit cupiditate repudiandae fuga labore numquam eum aperiam

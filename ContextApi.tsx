@@ -12,7 +12,6 @@ import {
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import StarHalf from "@mui/icons-material/StarHalf";
-import { Flamenco } from "next/font/google";
 
 interface SideBarMenu {
   id: number;
@@ -46,6 +45,10 @@ interface GlobalContextType {
     isMobile: boolean;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
   };
+  allNotesObject: {
+    allNotes: SingleNoteType[];
+    setAllNotes: React.Dispatch<React.SetStateAction<SingleNoteType[]>>;
+  };
 }
 const ContextProvider = createContext<GlobalContextType>({
   sideBarMenuObject: {
@@ -67,6 +70,10 @@ const ContextProvider = createContext<GlobalContextType>({
   isMobileObject: {
     isMobile: false,
     setIsMobile: () => {},
+  },
+  allNotesObject: {
+    allNotes: [],
+    setAllNotes: () => {},
   },
 });
 export default function GlobalContextProvider({
@@ -118,9 +125,12 @@ export default function GlobalContextProvider({
       isSelected: false,
     },
   ]);
+
   const [openSideBar, setOpenSideBar] = useState(false);
   const [openContentNote, setOpenContentNote] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [allNotes, setAllNotes] = useState<SingleNoteType[]>([]);
+
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 600);
   };
