@@ -178,7 +178,12 @@ export default function GlobalContextProvider({
           creationDate: "2022-03-01",
         },
       ];
+      setTimeout(() => {
+        setAllNotes(allNotes);
+      }, 1200);
     }
+
+    updateAllNotes();
   }, []);
 
   return (

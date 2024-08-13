@@ -6,23 +6,28 @@ import {
   materialLight,
   oneDark,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { SingleNoteType } from "@/app/Types";
 function AllNotesSection() {
+  const {
+    allNotesObject: { allNotes },
+  } = useGlobalContext();
   return (
     <div className="mt-5 flex flex-wrap gap-4">
-      <SingleNote />
-      <SingleNote />
-      <SingleNote />
-      <SingleNote />
-      <SingleNote />
+      {allNotes.map((note, index) => (
+        <div key={index}>
+          <SingleNote note={note} />
+        </div>
+      ))}
     </div>
   );
 }
 export default AllNotesSection;
-function SingleNote() {
+function SingleNote({ note }: { note: SingleNoteType }) {
   const {
     darkModeObject: { darkMode },
     openContentNoteObject: { openContentNote },
   } = useGlobalContext();
+  const { title, creationDate } = note;
   return (
     <>
       <div
@@ -32,8 +37,8 @@ function SingleNote() {
           openContentNote ? "w-full" : "w-[400px]"
         } max-sm:w-full rounded-lg py-4`}
       >
-        <NoteHeader />
-        <NoteDate />
+        <NoteHeader title={title} />
+        <NoteDate creationDate={creationDate} />
         <NoteTags />
         <NoteDescription />
         <CodeBlock language="javascript" />
