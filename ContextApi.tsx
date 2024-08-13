@@ -12,18 +12,8 @@ import {
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import StarHalf from "@mui/icons-material/StarHalf";
+import { SingleNoteType, SideBarMenu, DarkModeType } from "./app/Types";
 
-interface SideBarMenu {
-  id: number;
-  name: string;
-  isSelected: boolean;
-  icons: React.ReactNode;
-}
-interface DarkModeType {
-  id: number;
-  icon: React.ReactNode;
-  isSelected: boolean;
-}
 interface GlobalContextType {
   sideBarMenuObject: {
     sideBarMenu: SideBarMenu[];
@@ -141,6 +131,56 @@ export default function GlobalContextProvider({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    function updateAllNotes() {
+      const allNotes = [
+        {
+          id: "1",
+          title: "This is a Note",
+          isFavorite: false,
+          tags: ["tag1", "tag2"],
+          description: "This is a note",
+          code: `import React from 'react'";
+        function HelloWorld(){
+           return <h1>Hello World</h1>;
+        }
+        export default HelloWorld;`,
+          language: "javascript",
+          creationDate: "2022-01-01",
+        },
+        {
+          id: "2",
+          title: "This is a Second Note",
+          isFavorite: true,
+          tags: ["tag1", "tag2"],
+          description: "This is another a note",
+          code: `import React from 'react'";
+          function Greetings(){
+             return <h1>Greetings</h1>;
+          }
+          export default Greetings;`,
+          language: "javascript",
+          creationDate: "2022-02-01",
+        },
+        {
+          id: "3",
+          title: "This is a Third Note",
+          isFavorite: false,
+          tags: ["tag1", "tag2"],
+          description: "Yet another a note",
+          code: `import React from 'react'";
+          function LastOne(){
+             return <h1>Last Note</h1>;
+          }
+          export default LastOne;`,
+          language: "javascript",
+          creationDate: "2022-03-01",
+        },
+      ];
+    }
+  }, []);
+
   return (
     <ContextProvider.Provider
       value={{
@@ -149,6 +189,7 @@ export default function GlobalContextProvider({
         openSideBarObject: { openSideBar, setOpenSideBar },
         openContentNoteObject: { openContentNote, setOpenContentNote },
         isMobileObject: { isMobile, setIsMobile },
+        allNotesObject: { allNotes, setAllNotes },
       }}
     >
       {children}
