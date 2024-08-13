@@ -27,7 +27,8 @@ function SingleNote({ note }: { note: SingleNoteType }) {
     darkModeObject: { darkMode },
     openContentNoteObject: { openContentNote },
   } = useGlobalContext();
-  const { title, creationDate } = note;
+  const { title, creationDate, tags, description, code, isFavorite, language } =
+    note;
   return (
     <>
       <div
@@ -37,17 +38,23 @@ function SingleNote({ note }: { note: SingleNoteType }) {
           openContentNote ? "w-full" : "w-[400px]"
         } max-sm:w-full rounded-lg py-4`}
       >
-        <NoteHeader title={title} />
+        <NoteHeader title={title} isFavorite={isFavorite} />
         <NoteDate creationDate={creationDate} />
-        <NoteTags />
-        <NoteDescription />
-        <CodeBlock language="javascript" />
-        <NoteFooter />
+        <NoteTags tags={tags} />
+        <NoteDescription description={description} />
+        <CodeBlock language="javascript" code={code} />
+        <NoteFooter language={language} />
       </div>
     </>
   );
 }
-function NoteHeader() {
+function NoteHeader({
+  title,
+  isFavorite,
+}: {
+  title: string;
+  isFavorite: boolean;
+}) {
   const {
     openContentNoteObject: { openContentNote, setOpenContentNote },
   } = useGlobalContext();
@@ -57,67 +64,43 @@ function NoteHeader() {
       onClick={() => setOpenContentNote(true)}
     >
       <span className="font-bold text-lg w-[87%] hover:text-green-600 cursor-pointer">
-        Lorem ipsum dolor, sit amet consectetur.
+        {title}
       </span>
       <IconHeart className="text-slate-400 cursor-pointer" />
     </div>
   );
 }
-function NoteTags() {
+function NoteTags({ tags }: { tags: string[] }) {
   const {
     darkModeObject: { darkMode },
   } = useGlobalContext();
   return (
     <>
       <div className="text-slate-500 text-[11px] mx-4 flex-wrap flex gap-1 mt-4">
-        <span
-          className={`bg-green-100 p-1 rounded-md px-2 ${
-            darkMode[1].isSelected
-              ? "text-black font-semibold"
-              : "text-green-600"
-          }`}
-        >
-          function
-        </span>
-        <span
-          className={`bg-green-100 p-1 rounded-md px-2 ${
-            darkMode[1].isSelected
-              ? "text-black font-semibold"
-              : "text-green-600"
-          }`}
-        >
-          functions
-        </span>
-        <span
-          className={`bg-green-100 p-1 rounded-md px-2 ${
-            darkMode[1].isSelected
-              ? "text-black font-semibold"
-              : "text-green-600"
-          }`}
-        >
-          functions
-        </span>
-        <span
-          className={`bg-green-100 p-1 rounded-md px-2 ${
-            darkMode[1].isSelected
-              ? "text-black font-semibold"
-              : "text-green-600"
-          }`}
-        >
-          functions
-        </span>
+        {tags.map((tag, index) => (
+          <span
+            className={`bg-green-100 p-1 rounded-md px-2 ${
+              darkMode[1].isSelected
+                ? "text-black font-semibold"
+                : "text-green-600"
+            }`}
+            key={index}
+          >
+            {tag}
+          </span>
+        ))}
       </div>
     </>
   );
 }
-function NoteDate() {
+function NoteDate({ creationDate }: { creationDate: string }) {
   return (
     <div className="text-slate-500 text-[11px] flex gap-1 font-light mx-4 mt-1">
-      <span className="">23th June 2024</span>
+      <span className="">{creationDate}</span>
     </div>
   );
 }
-function NoteDescription() {
+function NoteDescription({ description }: { description: string }) {
   const {
     darkModeObject: { darkMode },
     openContentNoteObject: { openContentNote, setOpenContentNote },
@@ -130,29 +113,19 @@ function NoteDescription() {
         } text-slate-600 text-[13px] mt-4 mx-4`}
         onClick={() => setOpenContentNote(true)}
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea,
-        reprehenderit cupiditate repudiandae fuga labore numquam eum aperiam
-        assumenda, velit, a suscipit? Enim error labore quis voluptate minima
-        dolor? Sapiente, rem!
+        {description}
       </div>
     </>
   );
 }
 interface CodeBlockProps {
   language: string;
+  code: string;
 }
-const CodeBlock: React.FC<CodeBlockProps> = ({ language }) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({ language, code }) => {
   const {
     darkModeObject: { darkMode },
   } = useGlobalContext();
-
-  const codeString = `
-import React from 'react';
-function HelloWorld(){
-return <h1>Hello, world!</h1>;
-}
-export default HelloWorld;
-`;
   return (
     <>
       <div className="overflow-hidden text-sm">
@@ -160,19 +133,19 @@ export default HelloWorld;
           language={language}
           style={darkMode[1].isSelected ? oneDark : materialLight}
         >
-          {codeString}
+          {code}
         </SyntaxHighlighter>
       </div>
     </>
   );
 };
-function NoteFooter() {
+function NoteFooter({ language }: { language: string }) {
   return (
     <>
       <div className="flex justify-between text-[13px] text-slate-400 mx-4 mt-3">
         <div className="flex gap-1 items-center text-md">
           <IconBrandJavascript className="mb-[2px]" size={25} />
-          Javascript
+          <span>{language}</span>
         </div>
         <IconTrash style={{ fontSize: 14 }} className="cursor-pointer" />
       </div>
