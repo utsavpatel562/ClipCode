@@ -36,7 +36,7 @@ function SingleNote({ note }: { note: SingleNoteType }) {
           darkMode[1].isSelected ? "bg-slate-900 text-white" : "bg-white"
         } ${
           openContentNote ? "w-full" : "w-[400px]"
-        } max-sm:w-full rounded-lg py-4`}
+        } max-sm:w-full rounded-lg py-4 flex-wrap`}
       >
         <NoteHeader title={title} isFavorite={isFavorite} />
         <NoteDate creationDate={creationDate} />

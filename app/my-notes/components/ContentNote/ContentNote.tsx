@@ -1,10 +1,26 @@
+"use client";
+import { SingleNoteType } from "@/app/Types";
 import { useGlobalContext } from "@/ContextApi";
+import React, { useEffect, useState } from "react";
 
 function ContentNote() {
   const {
     openContentNoteObject: { openContentNote, setOpenContentNote },
     isMobileObject: { isMobile, setIsMobile },
+    selectedNoteObject: { selectedNote, setSelectedNote },
   } = useGlobalContext();
+
+  const [singleNote, setSingleNote] = useState<SingleNoteType | undefined>(
+    undefined
+  );
+  useEffect(() => {
+    if (openContentNote) {
+      if (selectedNote) {
+        setSingleNote(selectedNote);
+      }
+    }
+  }, [openContentNote, selectedNote]);
+  console.log(singleNote);
 
   return (
     <>
@@ -19,7 +35,13 @@ function ContentNote() {
             : ""
         }`}
       >
-        ContentNote
+        {singleNote && (
+          <ContentNoteHeader
+            singleNote={singleNote}
+            setSingleNote={setSingleNote}
+          />
+        )}
+
         <div
           onClick={() => setOpenContentNote(false)}
           className="cursor-pointer"
@@ -31,3 +53,35 @@ function ContentNote() {
   );
 }
 export default ContentNote;
+function ContentNoteHeader({
+  singleNote,
+  setSingleNote,
+}: {
+  singleNote: SingleNoteType;
+  setSingleNote: React.Dispatch<
+    React.SetStateAction<SingleNoteType | undefined>
+  >;
+}) {
+  const {
+    allNotesObject: { allNotes, setAllNotes },
+  } = useGlobalContext();
+  function onUpdateTitle(event: React.ChangeEvent<HTMLInputElement>) {
+    const newSingleNote = { ...singleNote, title: event.target.value };
+    setSingleNote(newSingleNote);
+
+    const newAllNotes = allNotes.map((note) => {
+      if (note._id === singleNote._id) {
+        return newSingleNote;
+      }
+      return note;
+    });
+    setAllNotes(newAllNotes);
+  }
+  return (
+    <input
+      placeholder="New Title"
+      value={singleNote.title}
+      onChange={onUpdateTitle}
+    />
+  );
+}
