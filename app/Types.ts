@@ -12,6 +12,7 @@ export interface DarkModeType{
     isSelected: boolean;
 }
 export interface SingleNoteType{
+    [x: string]: any;
     id: string;
     title: string;
     isFavorite: boolean;

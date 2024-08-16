@@ -1,6 +1,8 @@
+"use client";
 import { useGlobalContext } from "@/ContextApi";
 import { IconPlus, IconSearch } from "@tabler/icons-react";
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const SearchBar = () => {
   const {
@@ -26,11 +28,34 @@ const SearchBar = () => {
   );
 };
 function AddSnippetButton() {
+  const {
+    openContentNoteObject: { setOpenContentNote },
+    selectedNoteObject: { setSelectedNote },
+    allNotesObject: { allNotes, setAllNotes },
+    isNewNoteObject: { isNewNote, setIsNewNote },
+  } = useGlobalContext();
+  function openTheContentNote() {
+    const newSingleNote = {
+      id: uuidv4(),
+      title: "",
+      creationDate: "",
+      tags: [],
+      description: "",
+      code: "",
+      isFavorite: false,
+      language: "",
+    };
+    setIsNewNote(true);
+    setSelectedNote(newSingleNote);
+    setOpenContentNote(true);
+  }
   return (
     <>
       <div className="absoulte flex gap-2 px-3 rounded-3xl bg-green-600 p-1 text-[13px] text-white top-[5px] right-[2px] items-center cursor-pointer select-none max-md:px-2">
         <IconPlus style={{ width: 18 }} />
-        <div className="max-md:hidden">Snippet</div>
+        <div onClick={openTheContentNote} className="max-md:hidden">
+          Snippet
+        </div>
       </div>
     </>
   );

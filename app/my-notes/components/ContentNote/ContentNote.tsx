@@ -8,6 +8,8 @@ function ContentNote() {
     openContentNoteObject: { openContentNote, setOpenContentNote },
     isMobileObject: { isMobile, setIsMobile },
     selectedNoteObject: { selectedNote, setSelectedNote },
+    isNewNoteObject: { isNewNote, setIsNewNote },
+    allNotesObject: { allNotes, setAllNotes },
   } = useGlobalContext();
 
   const [singleNote, setSingleNote] = useState<SingleNoteType | undefined>(
@@ -20,7 +22,15 @@ function ContentNote() {
       }
     }
   }, [openContentNote, selectedNote]);
-  console.log(singleNote);
+
+  useEffect(() => {
+    if (isNewNote) {
+      if (singleNote && singleNote.title !== "") {
+        setAllNotes([...allNotes, singleNote]);
+        setIsNewNote(false);
+      }
+    }
+  }, [singleNote]);
 
   return (
     <>
