@@ -8,60 +8,75 @@ import { useGlobalContext } from "@/ContextApi";
 import SwiperSelection from "./NotesArea/SwiperSelection";
 import AllNotesSection from "./NotesArea/AllNotesSection";
 import ContentNote from "../ContentNote/ContentNote";
-function ContentArea() {
+
+export default function ContentArea() {
   const {
     darkModeObject: { darkMode },
   } = useGlobalContext();
+
+  const isDarkMode = darkMode[1].isSelected;
+
   return (
     <div
-      className={`w-full ${
-        darkMode[1].isSelected ? "bg-slate-950" : "bg-slate-100"
-      } p-5`}
+      className={`w-full min-h-screen flex flex-col ${
+        isDarkMode ? "bg-slate-950" : "bg-slate-100"
+      }`}
     >
       <TopBar />
+      <NotesArea />
     </div>
   );
 }
-export default ContentArea;
 
 function TopBar() {
   const {
     darkModeObject: { darkMode },
   } = useGlobalContext();
+
+  const isDarkMode = darkMode[1].isSelected;
+
   return (
-    <>
-      <div
-        className={`${
-          darkMode[1].isSelected ? "bg-slate-900 text-whit" : "bg-white"
-        } rounded-lg flex justify-between items-center p-3`}
-      >
-        <ProfileUser />
-        <SearchBar />
-        <div className="flex gap-4 items-center">
-          <DarkMode />
-          <SideBarMenuIcon />
-        </div>
+    <div
+      className={`${
+        isDarkMode ? "bg-slate-900 text-white" : "bg-white"
+      } w-full rounded-lg flex justify-between items-center p-3`}
+    >
+      <ProfileUser />
+      <SearchBar />
+      <div className="flex gap-4 items-center">
+        <DarkMode />
+        <SideBarMenuIcon />
       </div>
-      <NotesArea />
-    </>
+    </div>
   );
 }
+
 function NotesArea() {
   const {
     openContentNoteObject: { openContentNote },
     isMobileObject: { isMobile },
   } = useGlobalContext();
+
+  const contentNoteWidth = openContentNote
+    ? isMobile
+      ? "w-full"
+      : "w-1/2"
+    : "w-full";
+
   return (
-    <div className="flex gap-2 mt-5">
-      <div
-        className={`${
-          openContentNote ? `${isMobile ? "w-full" : "w-[50%]"}` : "w-full"
-        }`}
-      >
+    <div className="flex flex-1 gap-2 mt-5">
+      {/* Notes Section */}
+      <div className={`flex-1 ${contentNoteWidth}`}>
         <SwiperSelection />
         <AllNotesSection />
       </div>
-      <ContentNote />
+
+      {/* Content Note Section */}
+      {openContentNote && (
+        <div className={`flex-1 ${isMobile ? "w-full" : "w-1/2"} bg-white`}>
+          <ContentNote />
+        </div>
+      )}
     </div>
   );
 }
