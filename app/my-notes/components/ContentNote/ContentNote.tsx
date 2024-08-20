@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 function ContentNote() {
   const {
     openContentNoteObject: { openContentNote, setOpenContentNote },
-    isMobileObject: { isMobile, setIsMobile },
-    selectedNoteObject: { selectedNote, setSelectedNote },
+    isMobileObject: { isMobile },
+    selectedNoteObject: { selectedNote },
     isNewNoteObject: { isNewNote, setIsNewNote },
     allNotesObject: { allNotes, setAllNotes },
   } = useGlobalContext();
@@ -31,21 +31,29 @@ function ContentNote() {
 
   return (
     <div
-      className={`border bg-white p-3 rounded-lg z-50 w-auto${
+      className={`transition-transform duration-300 ease-in-out ${
         isMobile
-          ? "w-4/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          : "w-1/2"
+          ? "w-full max-w-md absolute top-0 right-0 h-full"
+          : "w-1/3 h-full"
       } ${openContentNote ? "block" : "hidden"}`}
     >
-      {singleNote && (
-        <ContentNoteHeader
-          singleNote={singleNote}
-          setSingleNote={setSingleNote}
-        />
-      )}
-
-      <div onClick={() => setOpenContentNote(false)} className="cursor-pointer">
-        Close
+      <div
+        className={`border bg-white p-4 rounded-lg h-full ${
+          isMobile ? "w-full" : "w-full"
+        }`}
+      >
+        {singleNote && (
+          <ContentNoteHeader
+            singleNote={singleNote}
+            setSingleNote={setSingleNote}
+          />
+        )}
+        <button
+          onClick={() => setOpenContentNote(false)}
+          className="mt-2 text-red-500"
+        >
+          Close
+        </button>
       </div>
     </div>
   );
@@ -78,6 +86,7 @@ function ContentNoteHeader({
 
   return (
     <input
+      className="w-full border p-2 rounded-md"
       placeholder="New Title"
       value={singleNote.title}
       onChange={onUpdateTitle}

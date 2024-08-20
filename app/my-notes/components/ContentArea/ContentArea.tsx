@@ -18,7 +18,7 @@ export default function ContentArea() {
 
   return (
     <div
-      className={`w-full min-h-screen flex flex-col ${
+      className={`w-full min-h-screen flex flex-col p-4 ${
         isDarkMode ? "bg-slate-950" : "bg-slate-100"
       }`}
     >
@@ -64,7 +64,7 @@ function NotesArea() {
     : "w-full";
 
   return (
-    <div className="flex flex-1 gap-2 mt-5">
+    <div className="flex flex-1 gap-2 mt-4">
       {/* Notes Section */}
       <div className={`flex-1 ${contentNoteWidth}`}>
         <SwiperSelection />
@@ -73,7 +73,7 @@ function NotesArea() {
 
       {/* Content Note Section */}
       {openContentNote && (
-        <div className={`flex-1 ${isMobile ? "w-full" : "w-1/2"} bg-white`}>
+        <div className={`flex-1 ${isMobile ? "w-full" : "w-1/2"} bg-slate-100`}>
           <ContentNote />
         </div>
       )}

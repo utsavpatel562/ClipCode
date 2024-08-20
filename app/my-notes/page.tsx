@@ -17,7 +17,7 @@ export default function Page() {
         isDarkMode ? "bg-slate-950 border-gray-900" : "bg-white border-gray-200"
       }`}
     >
-      <div className="my-2 w-[30%] border-r">
+      <div className="w-[30%] border-r">
         <Sidebar />
       </div>
       <ContentArea />
