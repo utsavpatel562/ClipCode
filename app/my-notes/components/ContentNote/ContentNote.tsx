@@ -1,12 +1,13 @@
 "use client";
 import { SingleNoteType } from "@/app/Types";
 import { useGlobalContext } from "@/ContextApi";
-import React, { useEffect, useState } from "react";
+import { IconCross, IconTimelineEventExclamation } from "@tabler/icons-react";
+import React, { useEffect, useRef, useState } from "react";
 
 function ContentNote() {
   const {
     openContentNoteObject: { openContentNote, setOpenContentNote },
-    isMobileObject: { isMobile },
+    isMobileObject: { isMobile, setIsMobile },
     selectedNoteObject: { selectedNote, setSelectedNote },
     isNewNoteObject: { isNewNote, setIsNewNote },
     allNotesObject: { allNotes, setAllNotes },
@@ -23,7 +24,16 @@ function ContentNote() {
       }
     }
   }, [openContentNote, selectedNote]);
-  console.log(singleNote);
+
+  useEffect(() => {
+    if (isNewNote) {
+      if (singleNote && singleNote.title !== "") {
+        setAllNotes([...allNotes, singleNote]);
+        setIsNewNote(false);
+      }
+    }
+  }, [singleNote]);
+
   return (
     <div
       className={`transition-transform duration-300 ease-in-out rounded-lg bg-white p-4 ${
@@ -63,9 +73,13 @@ function ContentNoteHeader({
 }) {
   const {
     allNotesObject: { allNotes, setAllNotes },
+    openContentNoteObject: { setOpenContentNote },
+    isNewNoteObject: { isNewNote, setIsNewNote },
   } = useGlobalContext();
 
-  function onUpdateTitle(event: React.ChangeEvent<HTMLInputElement>) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  function onUpdateTitle(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const newSingleNote = { ...singleNote, title: event.target.value };
     setSingleNote(newSingleNote);
 
@@ -78,12 +92,38 @@ function ContentNoteHeader({
     setAllNotes(newAllNotes);
   }
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  }
+
   return (
-    <input
-      className="w-full border p-2 rounded-md"
-      placeholder="New Title"
-      value={singleNote.title}
-      onChange={onUpdateTitle}
-    />
+    <>
+      <div className="flex justify-between gap-8 mb-4">
+        <div className="flex gap-2 w-full">
+          <IconTimelineEventExclamation
+            style={{ fontSize: 19 }}
+            className="text-slate-400 mt-[4px]"
+          />
+          <textarea
+            ref={textareaRef}
+            placeholder="New Title..."
+            value={singleNote.title}
+            onChange={onUpdateTitle}
+            onKeyDown={handleKeyDown}
+            className="font-bold text-xl outline-none resize-none h-auto overflow-hidden w-full"
+          />
+        </div>
+        <IconCross
+          onClick={() => {
+            setIsNewNote(false);
+            setOpenContentNote(false);
+          }}
+          className="text-slate-400 mt-[7px] cursor-pointer"
+          style={{ cursor: "pointer", fontSize: "18" }}
+        />
+      </div>
+    </>
   );
 }

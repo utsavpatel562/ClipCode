@@ -36,7 +36,7 @@ function AddSnippetButton() {
   } = useGlobalContext();
   function openTheContentNote() {
     const newSingleNote = {
-      id: uuidv4(),
+      id: uuidv4(), // Change _id to id
       title: "",
       creationDate: "",
       tags: [],
@@ -51,7 +51,7 @@ function AddSnippetButton() {
   }
   return (
     <>
-      <div className="absoulte flex gap-2 px-3 rounded-3xl bg-green-600 p-1 text-[13px] text-white top-[5px] right-[2px] items-center cursor-pointer select-none max-md:px-2">
+      <div className="absolute flex gap-2 px-3 rounded-3xl bg-green-600 p-1 text-[13px] text-white top-[5px] right-[2px] items-center cursor-pointer select-none max-md:px-2">
         <IconPlus style={{ width: 18 }} />
         <div onClick={openTheContentNote} className="max-md:hidden">
           Snippet
