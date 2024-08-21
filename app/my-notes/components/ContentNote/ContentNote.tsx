@@ -7,7 +7,7 @@ function ContentNote() {
   const {
     openContentNoteObject: { openContentNote, setOpenContentNote },
     isMobileObject: { isMobile },
-    selectedNoteObject: { selectedNote },
+    selectedNoteObject: { selectedNote, setSelectedNote },
     isNewNoteObject: { isNewNote, setIsNewNote },
     allNotesObject: { allNotes, setAllNotes },
   } = useGlobalContext();
@@ -17,44 +17,35 @@ function ContentNote() {
   );
 
   useEffect(() => {
-    if (openContentNote && selectedNote) {
-      setSingleNote(selectedNote);
+    if (openContentNote) {
+      if (selectedNote) {
+        setSingleNote(selectedNote);
+      }
     }
   }, [openContentNote, selectedNote]);
-
-  useEffect(() => {
-    if (isNewNote && singleNote?.title) {
-      setAllNotes([...allNotes, singleNote]);
-      setIsNewNote(false);
-    }
-  }, [singleNote]);
-
+  console.log(singleNote);
   return (
     <div
-      className={`transition-transform duration-300 ease-in-out rounded-lg ${
+      className={`transition-transform duration-300 ease-in-out rounded-lg bg-white p-4 ${
         isMobile
           ? "w-full max-w-md absolute top-0 right-0 h-full"
           : "w-1/3 h-full"
-      } ${openContentNote ? "block" : "hidden"}`}
+      } ${openContentNote ? "block" : "hidden"} ${
+        isMobile ? "w-full" : "w-full"
+      }`}
     >
-      <div
-        className={`border bg-white p-4 rounded-lg h-full w-[650px] ${
-          isMobile ? "w-full" : "w-full"
-        }`}
+      {singleNote && (
+        <ContentNoteHeader
+          singleNote={singleNote}
+          setSingleNote={setSingleNote}
+        />
+      )}
+      <button
+        onClick={() => setOpenContentNote(false)}
+        className="mt-2 text-red-500"
       >
-        {singleNote && (
-          <ContentNoteHeader
-            singleNote={singleNote}
-            setSingleNote={setSingleNote}
-          />
-        )}
-        <button
-          onClick={() => setOpenContentNote(false)}
-          className="mt-2 text-red-500"
-        >
-          Close
-        </button>
-      </div>
+        Close
+      </button>
     </div>
   );
 }
@@ -78,9 +69,12 @@ function ContentNoteHeader({
     const newSingleNote = { ...singleNote, title: event.target.value };
     setSingleNote(newSingleNote);
 
-    const newAllNotes = allNotes.map((note) =>
-      note._id === singleNote._id ? newSingleNote : note
-    );
+    const newAllNotes = allNotes.map((note) => {
+      if (note.id === singleNote.id) {
+        return newSingleNote;
+      }
+      return note;
+    });
     setAllNotes(newAllNotes);
   }
 
