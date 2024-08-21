@@ -31,14 +31,14 @@ function ContentNote() {
 
   return (
     <div
-      className={`transition-transform duration-300 ease-in-out ${
+      className={`transition-transform duration-300 ease-in-out rounded-lg ${
         isMobile
           ? "w-full max-w-md absolute top-0 right-0 h-full"
           : "w-1/3 h-full"
       } ${openContentNote ? "block" : "hidden"}`}
     >
       <div
-        className={`border bg-white p-4 rounded-lg h-full ${
+        className={`border bg-white p-4 rounded-lg h-full w-[650px] ${
           isMobile ? "w-full" : "w-full"
         }`}
       >

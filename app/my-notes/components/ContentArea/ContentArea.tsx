@@ -18,7 +18,7 @@ export default function ContentArea() {
 
   return (
     <div
-      className={`w-full min-h-screen flex flex-col p-4 ${
+      className={`w-full min-h-screen flex flex-col p-4 overflow-hidden ${
         isDarkMode ? "bg-slate-950" : "bg-slate-100"
       }`}
     >
@@ -57,23 +57,21 @@ function NotesArea() {
     isMobileObject: { isMobile },
   } = useGlobalContext();
 
-  const contentNoteWidth = openContentNote
-    ? isMobile
-      ? "w-full"
-      : "w-1/2"
-    : "w-full";
-
   return (
-    <div className="flex flex-1 gap-2 mt-4">
+    <div className="flex flex-1 gap-2 mt-4 overflow-hidden">
       {/* Notes Section */}
-      <div className={`flex-1 ${contentNoteWidth}`}>
+      <div
+        className={`flex-1 ${
+          openContentNote ? "w-full md:w-1/2" : "w-full"
+        } flex flex-col`}
+      >
         <SwiperSelection />
         <AllNotesSection />
       </div>
 
       {/* Content Note Section */}
       {openContentNote && (
-        <div className={`flex-1 ${isMobile ? "w-full" : "w-1/2"} bg-slate-100`}>
+        <div className="hidden md:flex md:w-1/2 flex-col bg-red-500 rounded-lg w-[600px]">
           <ContentNote />
         </div>
       )}
