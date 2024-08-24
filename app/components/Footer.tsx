@@ -18,7 +18,7 @@ const FooterPage = () => {
             <IconBrandGithub className="cursor-pointer hover:bg-black hover:text-white rounded-md" />
           </div>
           <div>
-            <Link href="#">© 2024 Copyright ClipCode</Link>
+            <Link href="#">© 2024 Copyright ClipCode by Utsav Patel</Link>
           </div>
         </div>
       </footer>
