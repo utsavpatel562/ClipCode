@@ -1,8 +1,9 @@
 "use client";
 import { SingleNoteType } from "@/app/Types";
 import { useGlobalContext } from "@/ContextApi";
-import { IconCross, IconTimelineEventExclamation } from "@tabler/icons-react";
+import TitleIcon from "@mui/icons-material/Title";
 import React, { useEffect, useRef, useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 function ContentNote() {
   const {
@@ -102,7 +103,7 @@ function ContentNoteHeader({
     <>
       <div className="flex justify-between gap-8 mb-4">
         <div className="flex gap-2 w-full">
-          <IconTimelineEventExclamation
+          <TitleIcon
             style={{ fontSize: 19 }}
             className="text-slate-400 mt-[4px]"
           />
@@ -115,13 +116,13 @@ function ContentNoteHeader({
             className="font-bold text-xl outline-none resize-none h-auto overflow-hidden w-full"
           />
         </div>
-        <IconCross
+        <CloseIcon
           onClick={() => {
             setIsNewNote(false);
             setOpenContentNote(false);
           }}
           className="text-slate-400 mt-[7px] cursor-pointer"
-          style={{ cursor: "pointer", fontSize: "18" }}
+          style={{ cursor: "pointer", fontSize: "22" }}
         />
       </div>
     </>
