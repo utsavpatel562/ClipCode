@@ -4,6 +4,8 @@ import { useGlobalContext } from "@/ContextApi";
 import TitleIcon from "@mui/icons-material/Title";
 import React, { useEffect, useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import StyleIcon from "@mui/icons-material/Style";
+import EditIcon from "@mui/icons-material/Edit";
 
 function ContentNote() {
   const {
@@ -138,5 +140,37 @@ function NoteTags({
   >;
 }) {
   const [hovered, setHovered] = useState(false);
-  return <div className="flex text-[13px] items-center gap-2"></div>;
+  return (
+    <>
+      <div className="flex text-[13px] items-center gap-2">
+        <StyleIcon
+          style={{ fontSize: 19 }}
+          className={`${hovered ? "text-purple-600" : "text-slate-400"}`}
+        />
+      </div>
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className="flex justify-between w-full"
+      >
+        <div className="flex gap-2 items-center flex-wrap">
+          {singleNote.tags.map((tag, index) => (
+            <div
+              key={index}
+              className="bg-slate-100 text-slate-400 p-1 px-2 rounded-md"
+            >
+              {" "}
+              {tag}
+            </div>
+          ))}
+          {hovered && (
+            <EditIcon
+              style={{ fontSize: 19 }}
+              className="text-slate-400 cursor-pointer"
+            />
+          )}
+        </div>
+      </div>
+    </>
+  );
 }
