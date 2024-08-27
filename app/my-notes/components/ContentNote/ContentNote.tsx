@@ -128,3 +128,15 @@ function ContentNoteHeader({
     </>
   );
 }
+function NoteTags({
+  singleNote,
+  setSingleNote,
+}: {
+  singleNote: SingleNoteType;
+  setSingleNote: React.Dispatch<
+    React.SetStateAction<SingleNoteType | undefined>
+  >;
+}) {
+  const [hovered, setHovered] = useState(false);
+  return <div className="flex text-[13px] items-center gap-2"></div>;
+}
