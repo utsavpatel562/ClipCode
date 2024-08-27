@@ -2,7 +2,7 @@
 import { SingleNoteType } from "@/app/Types";
 import { useGlobalContext } from "@/ContextApi";
 import TitleIcon from "@mui/icons-material/Title";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import StyleIcon from "@mui/icons-material/Style";
 import EditIcon from "@mui/icons-material/Edit";
@@ -80,14 +80,14 @@ function ContentNoteHeader({
     isNewNoteObject: { isNewNote, setIsNewNote },
   } = useGlobalContext();
 
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [onFocus, setOnFocus] = useState(false);
 
   function onUpdateTitle(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const newSingleNote = { ...singleNote, title: event.target.value };
     setSingleNote(newSingleNote);
 
     const newAllNotes = allNotes.map((note) => {
-      if (note.id === singleNote.id) {
+      if (note._id === singleNote._id) {
         return newSingleNote;
       }
       return note;
@@ -107,14 +107,19 @@ function ContentNoteHeader({
         <div className="flex gap-2 w-full">
           <TitleIcon
             style={{ fontSize: 19 }}
-            className="text-slate-400 mt-[4px]"
+            className={`${
+              onFocus ? "text-purple-600" : "text-slate-400"
+            } mt-[4px]`}
           />
           <textarea
-            ref={textareaRef}
-            placeholder="New Title..."
             value={singleNote.title}
+            placeholder="New Title..."
             onChange={onUpdateTitle}
             onKeyDown={handleKeyDown}
+            onBlur={() => setOnFocus(false)}
+            onFocus={() => setOnFocus(true)}
+            onMouseEnter={() => setOnFocus(true)}
+            onMouseLeave={() => setOnFocus(false)}
             className="font-bold text-xl outline-none resize-none h-auto overflow-hidden w-full"
           />
         </div>

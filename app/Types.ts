@@ -13,7 +13,7 @@ export interface DarkModeType{
 }
 export interface SingleNoteType{
     [x: string]: any;
-    id: string;
+    _id: string;
     title: string;
     isFavorite: boolean;
     tags: string[];

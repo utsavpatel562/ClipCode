@@ -156,7 +156,7 @@ export default function GlobalContextProvider({
     function updateAllNotes() {
       const allNotes = [
         {
-          id: "1",
+          _id: "1",
           title: "This is a Note",
           isFavorite: false,
           tags: ["tag1", "tag2"],
@@ -170,7 +170,7 @@ export default function GlobalContextProvider({
           creationDate: "2022-01-01",
         },
         {
-          id: "2",
+          _id: "2",
           title: "This is a Second Note",
           isFavorite: true,
           tags: ["tag1", "tag2"],
@@ -184,7 +184,7 @@ export default function GlobalContextProvider({
           creationDate: "2022-02-01",
         },
         {
-          id: "3",
+          _id: "3",
           title: "This is a Third Note",
           isFavorite: false,
           tags: ["tag1", "tag2"],

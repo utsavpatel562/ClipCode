@@ -36,7 +36,7 @@ function AddSnippetButton() {
   } = useGlobalContext();
   function openTheContentNote() {
     const newSingleNote = {
-      id: uuidv4(), // Change _id to id
+      _id: uuidv4(), // Change _id to id
       title: "",
       creationDate: "",
       tags: [],
